@@ -6,9 +6,7 @@ Route::get('/', function () {
     return view('pages.accueil');
 })->name('accueil');
 
-Route::get('/films', function () {
-    return view('pages.films');
-})->name('films');
+Route::get('/films', [FilmController::class, 'index'])->name('films');
 
 Route::get('/series', function () {
     return view('pages.series');
