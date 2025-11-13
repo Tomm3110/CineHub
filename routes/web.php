@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages.accueil');
+    return view('welcome');
 })->name('accueil');
 
 Route::get('/films', [FilmController::class, 'index'])->name('films');
