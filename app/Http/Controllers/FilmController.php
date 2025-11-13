@@ -11,11 +11,11 @@ class FilmController extends Controller
         $cat = request()->input('cat', "All");
         $query = Film::query();
         if ($cat != 'All') {
-            $query->where('categorie', $cat);
+            $query->where('titre', $cat);
         }
         $films = $query->get();
         $query = Film::query();
-        $cats = $query->distinct()->pluck('categorie');
-        return view('films.index', ['titre'=>"Liste des films",'cat'=>$cat,'categories' => $cats ,'films' => $films]);
+        $cats = $query->distinct()->pluck('titre');
+        return view('films.index', ['titre'=>"Liste des films",'cat'=>$cat,'titres' => $cats ,'films' => $films]);
     }
 }
