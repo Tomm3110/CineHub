@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('accueil');
 
+Route::get('/home', function () {
+    return view('accueil');
+})->name('accueil');
+
 Route::get('/films', [FilmController::class, 'index'])->name('films');
 
 Route::get('/series', function () {
