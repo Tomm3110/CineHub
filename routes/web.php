@@ -10,9 +10,9 @@ Route::get('/', function () {
 Route::get('/films', [FilmController::class, 'index'])->name('films');
 
 Route::get('/series', function () {
-    return view('pages.series');
+    return view('series');
 })->name('series');
 
 Route::get('/contact', function () {
-    return view('pages.contact');
+    return view('contact');
 })->name('contact');
