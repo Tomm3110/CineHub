@@ -8,9 +8,9 @@ use App\Models\Film;
 class FilmController extends Controller
 {
     public function index() {
-        $cat = request()->input('cat', "All");
+        $cat = request()->input('cat', "");
         $query = Film::query();
-        if ($cat != 'All') {
+        if ($cat != '') {
             $query->where('titre', $cat);
         }
         $films = $query->get();
