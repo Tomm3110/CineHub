@@ -38,21 +38,19 @@ class FilmController extends Controller
     }
 
     public function create() {
-        return view('films.create'); // Affiche le formulaire [cite: 80]
+        return view('films.create');
     }
 
     public function store(Request $request) {
         // 1. Validation
         $request->validate([
             'title' => 'required|string|max:255',
-            // Ajoutez ici les autres règles
         ]);
 
         // 2. Création
         $film = new Film();
         $film->title = $request->input('title');
-        $film->media = $request->input('media'); // Le nouveau champ
-        // ... autres champs
+        $film->media = $request->input('media');
         $film->save();
 
         // 3. Redirection avec message flash
@@ -73,7 +71,6 @@ class FilmController extends Controller
 
         $film = Film::findOrFail($id);
         $film->title = $request->input('title');
-        // ... mise à jour des autres champs
         $film->save();
 
         return redirect()->route('films.index')->with('success', 'Film mis à jour');
