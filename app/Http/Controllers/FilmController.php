@@ -63,6 +63,13 @@ class FilmController extends Controller
         return view('films.edit', compact('film'));
 }
 
+    public function destroy($id) {
+        $film = Film::findOrFail($id);
+        $film->delete();
+        return redirect()->route('films.index')->with('success', 'Film supprimé');
+    }
+
+
     public function update(Request $request, $id) {
         // Validation (similaire au store)
         $request->validate([
