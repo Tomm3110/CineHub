@@ -11,8 +11,6 @@ Route::get('/home', function () {
     return view('accueil');
 })->name('accueil');
 
-Route::get('/films', [FilmController::class, 'index'])->name('films');
-
 Route::get('/series', function () {
     return view('series');
 })->name('series');
@@ -20,3 +18,5 @@ Route::get('/series', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+Route::resource('/film', FilmController::class);
