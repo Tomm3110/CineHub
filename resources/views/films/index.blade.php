@@ -1,23 +1,36 @@
-<form action="{{route('film.index')}}">
-    <div class=" max-w-1/2 pl-10 mb-4 py-4 mt-4 flex  items-center gap-3 border border-gray-200 pb-4 dark:border-gray-700 rounded-2xl">
-        <label for="categorie" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
-            Titre :
-        </label>
-        <input type="text" name="cat" id="categorie" class="mt-0.5 w-10rem rounded border-gray-300 shadow-sm sm:text-sm dark:border-gray-600 dark:bg-gray-900 dark:text-white">
-            
-        </input>
-        <button type="submit" class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm bg-transparent relative text-stone-700 hover:text-stone-700 border-stone-500 hover:bg-transparent duration-150 hover:border-stone-600 rounded-full hover:opacity-60 hover:shadow-none">
-            Chercher
-        </button>
-    </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des films</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col p-6">
+<x-header></x-header>
+
+
+<form action="{{route('film.index')}}" class="flex gap-3 mb-6">
+    <input type="text" name="cat" placeholder="Titre"
+           class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64">
+    <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
+        Chercher
+    </button>
 </form>
 
-    <div>
-        <h2>liste des films :</h2>
-        @foreach($films as $film)
-            <b>titre :</b> {{$film->titre}} <br>
-            <b>année :</b> {{$film->annee}} <br>
-            <b>real :</b> {{$film->realisateur}} <br>
-            <hr>
-        @endforeach
-    </div>
+<div class="space-y-4">
+    @foreach($films as $film)
+        <div class="p-4 bg-red-900/20 border border-red-700 rounded-xl">
+            <p><b>Titre :</b> {{$film->titre}}</p>
+            <p><b>Année :</b> {{$film->annee}}</p>
+            <p><b>Réalisateur :</b> {{$film->realisateur}}</p>
+        </div>
+    @endforeach
+</div>
+
+<a href="{{ route('film.create') }}" class="block mt-8 px-6 py-3 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
+    ➕ Ajouter un film
+</a>
+
+</body>
+</html>

@@ -4,47 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier un film</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 p-6">
+<body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col p-6">
 
-<div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
-    <h1 class="text-2xl font-semibold mb-6">Modifier un film</h1>
+<h1 class="text-4xl font-bold mb-8">Modifier un film</h1>
 
-    @if(session('success'))
-        <div class="mb-4 p-3 bg-green-100 text-green-800 rounded">{{ session('success') }}</div>
-    @endif
+@if(session('success'))
+    <div class="mb-4 p-3 bg-green-800/50 text-green-200 rounded">{{ session('success') }}</div>
+@endif
 
-    @if($errors->any())
-        <div class="mb-4 p-3 bg-red-100 text-red-800 rounded">
-            <ul class="list-disc pl-5">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+@if($errors->any())
+    <div class="mb-4 p-3 bg-red-800/40 text-red-200 rounded">
+        <ul class="list-disc pl-5">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-    <form action="{{ route('film.update', $film->id) }}" method="POST" class="space-y-6">
-        @csrf
-        @method('PUT')
+<form action="{{ route('film.update', $film->id) }}" method="POST" class="space-y-6">
+    @csrf
+    @method('PUT')
 
-        <div>
-            <label class="block text-sm font-medium mb-1">Titre</label>
-            <input type="text" name="title" value="{{ old('title', $film->title) }}" class="w-full rounded-lg border-gray-300 p-2" required>
-        </div>
+    <div>
+        <label class="block mb-1">Titre :</label>
+        <input type="text" name="titre" value="{{ old('titre', $film->titre) }}"
+               class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white" required>
+    </div>
 
-        <div>
-            <label class="block text-sm font-medium mb-1">Media</label>
-            <input type="text" name="media" value="{{ old('media', $film->media) }}" class="w-full rounded-lg border-gray-300 p-2">
-        </div>
+    <div>
+        <label class="block mb-1">Année :</label>
+        <input type="number" name="annee" value="{{ old('annee', $film->annee) }}"
+               class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
+    </div>
 
-        <div class="flex items-center gap-3 mt-4">
-            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Enregistrer</button>
-            <a href="{{ route('film.index') }}" class="px-4 py-2 border rounded-lg text-gray-700">Annuler</a>
-        </div>
-    </form>
-</div>
+    <div>
+        <label class="block mb-1">Réalisateur :</label>
+        <input type="text" name="realisateur" value="{{ old('realisateur', $film->realisateur) }}"
+               class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
+    </div>
+
+    <div>
+        <label class="block mb-1">Synopsis :</label>
+        <textarea name="synopsis" rows="5"
+                  class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">{{ old('synopsis', $film->synopsis) }}</textarea>
+    </div>
+
+    <div class="flex gap-3 mt-4">
+        <button type="submit" class="bg-red-700 hover:bg-red-600 px-6 py-3 rounded-full font-semibold">
+            Enregistrer
+        </button>
+        <a href="{{ route('film.index') }}" class="px-6 py-3 border border-red-600 rounded-full hover:bg-red-900/40">
+            Annuler
+        </a>
+    </div>
+</form>
 
 </body>
 </html>
