@@ -1,4 +1,4 @@
-<form action="{{route('films')}}">
+<form action="{{route('film.index')}}">
     <div class=" max-w-1/2 pl-10 mb-4 py-4 mt-4 flex  items-center gap-3 border border-gray-200 pb-4 dark:border-gray-700 rounded-2xl">
         <label for="categorie" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
             Titre :
