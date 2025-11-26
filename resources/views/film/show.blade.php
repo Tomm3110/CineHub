@@ -11,6 +11,7 @@
 <h1 class="text-4xl font-bold mb-6">Détails du film</h1>
 
 <div class="p-6 bg-red-900/20 border border-red-700 rounded-xl space-y-3">
+    <p><img src="{{ $film->media }}"/></p>
     <p><b>Titre :</b> {{ $film->titre }}</p>
     <p><b>Année :</b> {{ $film->annee }}</p>
     <p><b>Réalisateur :</b> {{ $film->realisateur }}</p>
