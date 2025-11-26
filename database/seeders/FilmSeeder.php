@@ -14,10 +14,5 @@ class FilmSeeder extends Seeder
     public function run(): void
     {
         Film::factory()->count(10)->create();
-        Film::factory()->create([
-            'titre' => 'lion',
-            'annee' => '2000',
-            'realisateur' => 'Jean',
-            'synopsis' => 'qhfgzvzbhjz']);
     }
 }

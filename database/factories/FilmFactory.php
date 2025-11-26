@@ -21,6 +21,7 @@ class FilmFactory extends Factory
             'annee' => $this->faker->dateTimeBetween(1980, new \DateTime()),
             'realisateur' => $this->faker->name(),
             'synopsis' => $this->faker->paragraph(),
+            'media' => $this->faker->imageUrl(),
         ];
     }
 }

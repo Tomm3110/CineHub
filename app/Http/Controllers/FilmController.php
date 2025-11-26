@@ -24,11 +24,14 @@ class FilmController extends Controller
         $films = $query->get();
         $titres = Film::distinct()->pluck('titre');
 
+        $medias = Film::distinct()->pluck('media');
+
         return view('films.index', [
             'titre' => "Liste des films",
             'cat' => $cat,
             'titres' => $titres,
-            'films' => $films
+            'films' => $films,
+            'medias' => $medias
         ]);
     }
 
