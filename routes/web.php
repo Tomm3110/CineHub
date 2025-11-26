@@ -11,7 +11,7 @@ Route::get('/home', function () {
     return view('accueil');
 })->name('accueil');
 
-Route::get('/films', [FilmController::class, 'index'])->name('films');
+Route::resource('film', FilmController::class);
 
 Route::get('/series', function () {
     return view('series');

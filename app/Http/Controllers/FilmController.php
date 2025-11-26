@@ -24,11 +24,76 @@ class FilmController extends Controller
         $films = $query->get();
         $titres = Film::distinct()->pluck('titre');
 
-        return view('films.index', [
+        $medias = Film::distinct()->pluck('media');
+
+        return view('film.index', [
             'titre' => "Liste des films",
             'cat' => $cat,
             'titres' => $titres,
-            'films' => $films
+            'films' => $films,
+            'medias' => $medias
         ]);
+    }
+
+    public function show($id) {
+        $film = Film::findOrFail($id);
+        return view('film.show', compact('film'));
+    }
+
+    public function create() {
+        return view('film.create');
+    }
+
+    public function store(Request $request) {
+        // 1. Validation
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'annee' => 'nullable|integer',
+            'realisateur' => 'nullable|string|max:255',
+            'synopsis' => 'nullable|string',
+            'media' => 'nullable|string',
+        ]);
+
+        // 2. Création
+        $film = new Film();
+        $film->titre = $request->input('titre');
+        $film->annee = $request->input('annee');
+        $film->realisateur = $request->input('realisateur');
+        $film->synopsis = $request->input('synopsis');
+        $film->media = $request->input('media');
+        $film->save();
+
+        // 3. Redirection avec message flash
+        return redirect()->route('film.index')
+            ->with('success', 'Film créé avec succès');
+    }
+
+    public function edit($id) {
+        $film = Film::findOrFail($id);
+        return view('film.edit', compact('film'));
+}
+
+    public function destroy($id) {
+        $film = Film::findOrFail($id);
+        $film->delete();
+        return redirect()->route('film.index')->with('success', 'Film supprimé');
+    }
+
+
+    public function update(Request $request, $id) {
+        // Validation
+        $request->validate([
+            'titre' => 'required|string|max:255',
+        ]);
+
+        $film = Film::findOrFail($id);
+        $film->titre = $request->input('titre');
+        $film->annee = $request->input('annee');
+        $film->realisateur = $request->input('realisateur');
+        $film->synopsis = $request->input('synopsis');
+        $film->media = $request->input('media');
+        $film->save();
+
+        return redirect()->route('film.index')->with('success', 'Film mis à jour');
     }
 }
