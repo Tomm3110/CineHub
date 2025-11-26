@@ -26,7 +26,7 @@ class FilmController extends Controller
 
         $medias = Film::distinct()->pluck('media');
 
-        return view('films.index', [
+        return view('film.index', [
             'titre' => "Liste des films",
             'cat' => $cat,
             'titres' => $titres,
@@ -37,11 +37,11 @@ class FilmController extends Controller
 
     public function show($id) {
         $film = Film::findOrFail($id);
-        return view('films.show', compact('film'));
+        return view('film.show', compact('film'));
     }
 
     public function create() {
-        return view('films.create');
+        return view('film.create');
     }
 
     public function store(Request $request) {
@@ -51,6 +51,7 @@ class FilmController extends Controller
             'annee' => 'nullable|integer',
             'realisateur' => 'nullable|string|max:255',
             'synopsis' => 'nullable|string',
+            'media' => 'nullable|string',
         ]);
 
         // 2. Création
@@ -59,6 +60,7 @@ class FilmController extends Controller
         $film->annee = $request->input('annee');
         $film->realisateur = $request->input('realisateur');
         $film->synopsis = $request->input('synopsis');
+        $film->media = $request->input('media');
         $film->save();
 
         // 3. Redirection avec message flash
@@ -68,7 +70,7 @@ class FilmController extends Controller
 
     public function edit($id) {
         $film = Film::findOrFail($id);
-        return view('films.edit', compact('film'));
+        return view('film.edit', compact('film'));
 }
 
     public function destroy($id) {
@@ -79,7 +81,7 @@ class FilmController extends Controller
 
 
     public function update(Request $request, $id) {
-        // Validation (similaire au store)
+        // Validation
         $request->validate([
             'titre' => 'required|string|max:255',
         ]);
@@ -89,8 +91,9 @@ class FilmController extends Controller
         $film->annee = $request->input('annee');
         $film->realisateur = $request->input('realisateur');
         $film->synopsis = $request->input('synopsis');
+        $film->media = $request->input('media');
         $film->save();
 
-        return redirect()->route('films.index')->with('success', 'Film mis à jour');
+        return redirect()->route('film.index')->with('success', 'Film mis à jour');
     }
 }
