@@ -29,3 +29,10 @@
         @endforeach
     </div>
 @endsection
+
+<a href="{{ route('film.create') }}" class="block mt-8 px-6 py-3 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
+    ➕ Ajouter un film
+</a>
+
+</body>
+</html>

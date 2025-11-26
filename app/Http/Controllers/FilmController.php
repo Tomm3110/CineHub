@@ -47,17 +47,22 @@ class FilmController extends Controller
     public function store(Request $request) {
         // 1. Validation
         $request->validate([
-            'title' => 'required|string|max:255',
+            'titre' => 'required|string|max:255',
+            'annee' => 'nullable|integer',
+            'realisateur' => 'nullable|string|max:255',
+            'synopsis' => 'nullable|string',
         ]);
 
         // 2. Création
         $film = new Film();
-        $film->title = $request->input('title');
-        $film->media = $request->input('media');
+        $film->titre = $request->input('titre');
+        $film->annee = $request->input('annee');
+        $film->realisateur = $request->input('realisateur');
+        $film->synopsis = $request->input('synopsis');
         $film->save();
 
         // 3. Redirection avec message flash
-        return redirect()->route('films.index')
+        return redirect()->route('film.index')
             ->with('success', 'Film créé avec succès');
     }
 
@@ -66,14 +71,24 @@ class FilmController extends Controller
         return view('films.edit', compact('film'));
 }
 
+    public function destroy($id) {
+        $film = Film::findOrFail($id);
+        $film->delete();
+        return redirect()->route('film.index')->with('success', 'Film supprimé');
+    }
+
+
     public function update(Request $request, $id) {
         // Validation (similaire au store)
         $request->validate([
-            'title' => 'required|string|max:255',
+            'titre' => 'required|string|max:255',
         ]);
 
         $film = Film::findOrFail($id);
-        $film->title = $request->input('title');
+        $film->titre = $request->input('titre');
+        $film->annee = $request->input('annee');
+        $film->realisateur = $request->input('realisateur');
+        $film->synopsis = $request->input('synopsis');
         $film->save();
 
         return redirect()->route('films.index')->with('success', 'Film mis à jour');
