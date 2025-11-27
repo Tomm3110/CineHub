@@ -46,7 +46,7 @@ class FilmController extends Controller
         // 1. Validation
         $request->validate([
             'titre' => 'required|string|max:255',
-            'annee' => 'nullable|integer',
+            'annee' => 'nullable|date',
             'realisateur' => 'nullable|string|max:255',
             'synopsis' => 'nullable|string',
             'media' => 'nullable|string',
@@ -82,7 +82,7 @@ class FilmController extends Controller
         // Validation
         $request->validate([
             'titre' => 'required|string|max:255',
-            'annee' => 'nullable|integer',
+            'annee' => 'nullable|date',
             'realisateur' => 'nullable|string|max:255',
             'synopsis' => 'nullable|string',
             'media' => 'nullable|string',
