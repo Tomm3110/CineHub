@@ -36,7 +36,7 @@
 
     <div>
         <label class="block mb-1">Année :</label>
-        <input type="number" name="annee" value="{{ old('annee', $film->annee) }}"
+        <input type="datetime" name="annee" value="{{ old('annee', $film->annee) }}"
                class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
     </div>
 
@@ -50,6 +50,12 @@
         <label class="block mb-1">Synopsis :</label>
         <textarea name="synopsis" rows="5"
                   class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">{{ old('synopsis', $film->synopsis) }}</textarea>
+    </div>
+
+    <div>
+        <label class="block mb-1">Lien affiche :</label>
+        <input type="text" name="media" rows="5"
+                  class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white" value="{{ old('synopsis', $film->media) }}"></input>
     </div>
 
     <div class="flex gap-3 mt-4">

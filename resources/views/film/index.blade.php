@@ -8,7 +8,7 @@
     <body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col p-6">
         <x-header></x-header>
 
-        <form action="{{route('film.index')}}" class="flex gap-3 mb-6">
+        <form action="{{route('film.index')}}" class="flex gap-3 mb-6 mt-16">
             <input type="text" name="cat" placeholder="Titre"
                    class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64">
             <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
@@ -32,5 +32,6 @@
             ➕ Ajouter un film
         </a>
 
+        <x-footer></x-footer>
     </body>
 </html>
