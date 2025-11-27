@@ -1,9 +1,7 @@
 import './bootstrap';
 
 // Import Alpine.js
-import Alpine from 'alpinejs';
-window.Alpine = Alpine;
-Alpine.start();
+import 'alpinejs/dist/cdn.min.js';
 
 // Import Font Awesome
 import '@fortawesome/fontawesome-free/js/all.js';
