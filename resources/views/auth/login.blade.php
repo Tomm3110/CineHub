@@ -1,9 +1,13 @@
+@extends('layouts.app')
+@section('title', 'Detail du film')
+
+@section('content')
 <div class="mx-auto max-w-xl px-4 lg:px-0 mt-7">
     <div
         class="bg-black/40 backdrop-blur-sm border border-red-950/50 rounded-xl shadow-2xl">
         <div class="p-4 sm:p-7">
             <div class="text-center">
-                <h1 class="block text-3xl font-bold text-white mb-2">Se connecter à CinéHub 🎬</h1>
+                <h1 class="block text-3xl font-bold text-white mb-2">Se connecter à CinéHub</h1>
                 <p class="mt-2 text-sm text-gray-400">
                     Pas encore inscrit ?
                     <a class="text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium"
@@ -36,7 +40,7 @@
                         <div class="relative">
                             <input type="password" id="password" name="password"
                                    class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
-                                   required autocomplete="current-password">
+                                   required = "current-password">
                         </div>
                         @error('password')
                         <p class="text-xs text-red-500 mt-2">{{ $message }}</p>
@@ -61,3 +65,4 @@
         </div>
     </div>
 </div>
+@endsection

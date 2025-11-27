@@ -11,7 +11,7 @@
     </ul>
 
     <div>
-        <a href="#"
+        <a href={{route('login')}}
            class="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full hover:bg-red-700/60 transition-all shadow-md">
             <span>Login</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
