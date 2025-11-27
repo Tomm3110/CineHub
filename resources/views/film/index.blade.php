@@ -12,7 +12,7 @@
 
     <form action="{{ route('film.index') }}" class="flex gap-3 mb-6 mt-16">
         <input type="text" name="cat" placeholder="Titre"
-            class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64" value="{{ $_GET['cat'] }}">
+            class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64" value="{{ request('cat') }}">
         </input>
         <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
             Chercher
