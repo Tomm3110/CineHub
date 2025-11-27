@@ -36,7 +36,7 @@
 
     <div>
         <label class="block mb-1">Année :</label>
-        <input type="datetime" name="annee" value="{{ old('annee', $film->annee) }}"
+        <input type="date" name="annee" value="{{ old('annee', date_format($film->annee, "Y-m-d")) }}"
                class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
     </div>
 
