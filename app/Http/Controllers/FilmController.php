@@ -10,16 +10,14 @@ class FilmController extends Controller
 {
     public function index(Request $request) {
         $cat = $request->input('cat');
-        if ($cat === null) {
-            $cat = $request->cookie('cat');
-        }
+
         if (!$cat) {
             $cat = 'All';
         }
-        Cookie::queue('cat', $cat, 10);
+
         $query = Film::query();
         if ($cat != 'All' && $cat != '') {
-            $query->where('titre', $cat);
+            $query->where('titre', 'like', '%' . $cat . '%');
         }
         $films = $query->get();
         $titres = Film::distinct()->pluck('titre');
