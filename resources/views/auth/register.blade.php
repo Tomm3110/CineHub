@@ -1,9 +1,14 @@
+@extends('layouts.app')
+@section('title', 'Detail du film')
+
+@section('content')
+
 <div class="mx-auto max-w-xl px-4 lg:px-0 mt-7">
     <div
         class="bg-black/40 backdrop-blur-sm border border-red-950/50 rounded-xl shadow-2xl">
         <div class="p-4 sm:p-7">
             <div class="text-center">
-                <h1 class="block text-3xl font-bold text-white mb-2">Créer un compte CinéHub 🍿</h1>
+                <h1 class="block text-3xl font-bold text-white mb-2">Créer un compte CinéHub</h1>
                 <p class="mt-2 text-sm text-gray-400">
                     Déjà inscrit ?
                     <a class="text-red-500 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium"
@@ -16,11 +21,11 @@
                 @csrf
                 <div class="grid gap-y-4">
                     <div>
-                        <label for="name" class="block text-sm mb-2 text-gray-200">Nom / Pseudo</label>
+                        <label for="name" class="block text-sm mb-2 text-gray-200">Identifiant</label>
                         <div class="relative">
                             <input type="text" id="name" name="name"
                                    class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
-                                   required autocomplete="name" autofocus value="{{ old('name') }}">
+                                   required ="name" autofocus value="{{ old('name') }}">
                         </div>
                         @error('name')
                         <p class="text-xs text-red-500 mt-2">{{ $message }}</p>
@@ -42,7 +47,7 @@
                         <div class="relative">
                             <input type="password" id="password" name="password"
                                    class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
-                                   required autocomplete="new-password">
+                                   required ="new-password">
                         </div>
                         @error('password')
                         <p class="text-xs text-red-500 mt-2">{{ $message }}</p>
@@ -53,7 +58,7 @@
                         <div class="relative">
                             <input type="password" id="password-confirm" name="password_confirmation"
                                    class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
-                                   required autocomplete="new-password">
+                                   required ="new-password">
                         </div>
                     </div>
                     <button type="submit"
@@ -65,3 +70,4 @@
         </div>
     </div>
 </div>
+@endsection
