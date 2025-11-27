@@ -19,7 +19,7 @@
 
             {{-- Informations --}}
             <div class="space-y-4 flex-1">
-                <p class="text-lg"><span class="font-semibold text-red-300">Année :</span> {{ date_format($film->annee, "Y-m-d") }}</p>
+                <p class="text-lg"><span class="font-semibold text-red-300">Date de sortie :</span> {{ $film->annee->locale('fr')->translatedFormat('j F Y') }}</p>
                 <p class="text-lg"><span class="font-semibold text-red-300">Réalisateur :</span> {{ $film->realisateur }}</p>
                 <p class="text-lg leading-relaxed"><span class="font-semibold text-red-300">Synopsis :</span> <br>{{ $film->synopsis }}</p>
             </div>
