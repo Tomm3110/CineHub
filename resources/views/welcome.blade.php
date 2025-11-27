@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CinéHub – Accueil</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        @keyframes wave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .bg-wave {
+            background: linear-gradient(-45deg, #450a0a, #7f1d1d, #0a0000, #450a0a);
+            background-size: 400% 400%;
+            animation: wave 12s ease infinite;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col">
+<body class="bg-wave text-white min-h-screen flex flex-col">
 <x-header></x-header>
 
 

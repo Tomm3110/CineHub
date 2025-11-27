@@ -1,42 +1,32 @@
-<html lang="fr">
+@extends('layouts.app')
+@section('title', 'Detail du film')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des films</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col p-6">
-    <x-header></x-header>
-
-    <form action="{{ route('film.index') }}" class="flex gap-3 mb-6 mt-16">
-        <input type="text" name="cat" placeholder="Titre"
-            class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64" value="{{ request('cat') }}">
-        </input>
-        <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
-            Chercher
-        </button>
-    </form>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        @foreach ($films as $film)
-            <x-filmCard :film="$film"></x-filmCard>
-        @endforeach
+@section('content')
+    <div class="flex items-center justify-between mt-16 mb-5">
+        {{-- Formulaire de recherche --}}
+        <form action="{{ route('film.index') }}" class="flex items-center gap-3">
+            <input type="text" name="cat" placeholder="Titre"
+                   class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64">
+            <button type="submit"
+                    class="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
+                Chercher
+            </button>
+        </form>
+        {{-- Bouton Ajouter --}}
+        <a href="{{ route('film.create') }}"
+           class="px-6 py-3 bg-red-900/40 border border-red-700 rounded-full font-semibold hover:bg-red-800 transition">
+            Ajouter un film
+        </a>
     </div>
 
-    @if ($films->isEmpty())
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach($films as $film)
+                <x-filmCard :film="$film"></x-filmCard>
+            @endforeach
+        </div>
+        @if($films->isEmpty())
         <div class="text-center text-gray-400 mt-10">
             Aucun film trouvé.
         </div>
-    @endif
-
-    <a href="{{ route('film.create') }}"
-        class="block mt-8 px-6 py-3 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
-        ➕ Ajouter un film
-    </a>
-
-    <x-footer></x-footer>
-</body>
-
-</html>
+        @endif
+@endsection
