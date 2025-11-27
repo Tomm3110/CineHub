@@ -14,8 +14,8 @@
     <h1 class="text-4xl md:text-5xl font-serif font-semibold mb-3">Votre avis fait le film</h1>
     <h2 class="text-2xl md:text-3xl font-light mb-8">Osez donner votre étoile</h2>
 
-    <a href="#"
-       class="border border-red-600 text-white text-lg rounded-full px-6 py-3 hover:bg-red-800 transition-all">
+    <a href={{route('register')}}
+           class="border border-red-600 text-white text-lg rounded-full px-6 py-3 hover:bg-red-800 transition-all">
         Créer un compte
     </a>
 </main>
