@@ -82,6 +82,10 @@ class FilmController extends Controller
         // Validation
         $request->validate([
             'titre' => 'required|string|max:255',
+            'annee' => 'nullable|integer',
+            'realisateur' => 'nullable|string|max:255',
+            'synopsis' => 'nullable|string',
+            'media' => 'nullable|string',
         ]);
 
         $film = Film::findOrFail($id);
