@@ -5,8 +5,8 @@
     </div>
 
     <ul class="hidden md:flex space-x-8 text-lg bg-white/10 backdrop-blur-md px-6 py-2 rounded-full shadow-lg border border-white/20">
-        <li><a href="#" class="text-white hover:text-red-400 transition-colors">Home</a></li>
-        <li><a href="#" class="text-white hover:text-red-400 transition-colors">Films</a></li>
+        <li><a href={{ route('accueil') }} class="text-white hover:text-red-400 transition-colors">Home</a></li>
+        <li><a href={{ route('film.index') }} class="text-white hover:text-red-400 transition-colors">Films</a></li>
         <li><a href="#" class="text-white hover:text-red-400 transition-colors">Séries</a></li>
     </ul>
 
