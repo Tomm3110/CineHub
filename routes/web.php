@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FilmController;
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return view('accueil');
+    }
     return view('welcome');
 })->name('accueil');
 
