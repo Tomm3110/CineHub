@@ -6,7 +6,7 @@
         <title>@yield('title', 'Mon Application CinéHub')</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-gray-100 text-gray-900 font-sans antialiased">
+    <body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col p-6">
         <x-header></x-header>
         <div class="container mx-auto p-6">
             @yield('content')
