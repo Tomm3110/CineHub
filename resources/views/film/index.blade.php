@@ -15,7 +15,7 @@
         {{-- Bouton Ajouter --}}
         <a href="{{ route('film.create') }}"
            class="px-6 py-3 bg-red-900/40 border border-red-700 rounded-full font-semibold hover:bg-red-800 transition">
-            Ajouter un film
+            + Ajouter un film
         </a>
     </div>
 
