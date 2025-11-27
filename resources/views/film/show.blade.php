@@ -1,45 +1,39 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
+@section('title', 'Detail du film')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails du film</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('content')
+    <div class="mt-16 mb-10 text-white">
 
-<body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col p-6">
-
-    <h1 class="text-4xl font-bold mb-6">Détails du film</h1>
-
-    <div class="p-6 bg-red-900/20 border border-red-700 rounded-xl space-y-3">
-        <p><img src="{{ $film->media }}" class="h-64"/></p>
-        <p><b>Titre :</b> {{ $film->titre }}</p>
-        <p><b>Année :</b> {{ $film->annee }}</p>
-        <p><b>Réalisateur :</b> {{ $film->realisateur }}</p>
-        <p><b>Synopsis :</b> {{ $film->synopsis }}</p>
-    </div>
-
-    <div class="flex gap-2">
-        <a href="{{ route('film.edit', $film->id) }}"
-            class="text-yellow-500 hover:text-yellow-400 font-semibold text-sm transition">
-            Modifier
+        {{-- Retour --}}
+        <a href="{{ route('film.index') }}"
+           class="inline-block mt-10 text-red-300 hover:text-red-100 transition mb-5">
+            ⬅ Retour à la liste
         </a>
+        <h1 class="text-4xl font-bold mb-8">{{ $film->titre }}</h1>
+        <div class="bg-red-900/40 border border-red-700 rounded-xl p-6 flex flex-col md:flex-row gap-6">
+
+            {{-- Image du film --}}
+            <div class="flex-shrink-0">
+                <img src="{{ $film->media }}" class="h-64 w-48 object-cover rounded-lg shadow-lg border border-red-800">
+            </div>
+
+            {{-- Informations --}}
+            <div class="space-y-4 flex-1">
+                <p class="text-lg"><span class="font-semibold text-red-300">Année :</span> {{ date_format($film->annee, "Y-m-d") }}</p>
+                <p class="text-lg"><span class="font-semibold text-red-300">Réalisateur :</span> {{ $film->realisateur }}</p>
+                <p class="text-lg leading-relaxed"><span class="font-semibold text-red-300">Synopsis :</span> <br>{{ $film->synopsis }}</p>
+            </div>
+        </div>
+
+        {{-- Boutons modifier et supprimer --}}
+        <div class="flex items-center gap-6 mt-6">
+            <a href="{{ route('film.edit', $film->id) }}" class="px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-black font-semibold rounded-full transition">Modifier</a>
+            <form action="{{ route('film.destroy', $film->id) }}" method="POST"
+                  onsubmit="return confirm('Voulez-vous vraiment supprimer ce film ?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-full font-semibold transition">Supprimer</button>
+            </form>
+        </div>
     </div>
-
-    <form action="{{ route('film.destroy', $film->id) }}" method="POST"
-        onsubmit="return confirm('Voulez-vous vraiment supprimer ce film ?');">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="text-red-500 hover:text-red-400 text-sm font-semibold transition">
-            Supprimer
-        </button>
-    </form>
-
-    <a href="{{ route('film.index') }}" class="block mt-6 text-red-300 hover:text-red-100">
-        ⬅ Retour à la liste
-    </a>
-
-</body>
-
-</html>
+@endsection
