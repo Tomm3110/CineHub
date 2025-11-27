@@ -13,7 +13,7 @@
         <h3 class="text-xl font-bold text-white mb-1">{{ $film->titre }}</h3>
 
         <div class="text-gray-400 text-sm mb-4 space-y-1">
-            <p>{{ $film->annee }}</p>
+           <p>{{ $film->annee->locale('fr')->translatedFormat('j F Y') }}</p>
             <p>🎬 {{ $film->realisateur }}</p>
         </div>
 

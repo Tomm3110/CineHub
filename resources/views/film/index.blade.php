@@ -6,7 +6,7 @@
         {{-- Formulaire de recherche --}}
         <form action="{{ route('film.index') }}" class="flex items-center gap-3">
             <input type="text" name="cat" placeholder="Titre"
-                   class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64">
+                   class="p-2 rounded-xl bg-red-900/40 border border-red-700 text-white w-64" value="{{ request('cat') }}"/>
             <button type="submit"
                     class="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-full font-semibold">
                 Chercher
