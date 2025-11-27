@@ -22,28 +22,34 @@
 
 <form action="{{ route('film.store') }}" method="POST" class="space-y-6">
     @csrf
-    <div>
-        <label for="titre" class="block mb-1">Titre du film :</label>
-        <input type="text" id="titre" name="titre" value="{{ old('titre') }}"
+<div>
+        <label class="block mb-1">Titre :</label>
+        <input type="text" name="titre"
                class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white" required>
     </div>
 
     <div>
-        <label for="annee" class="block mb-1">Année :</label>
-        <input type="number" id="annee" name="annee" value="{{ old('annee') }}"
+        <label class="block mb-1">Date :</label>
+        <input type="date" name="annee"
                class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
     </div>
 
     <div>
-        <label for="realisateur" class="block mb-1">Réalisateur :</label>
-        <input type="text" id="realisateur" name="realisateur" value="{{ old('realisateur') }}"
+        <label class="block mb-1">Réalisateur :</label>
+        <input type="text" name="realisateur"
                class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
     </div>
 
     <div>
-        <label for="synopsis" class="block mb-1">Synopsis :</label>
-        <textarea id="synopsis" name="synopsis" rows="5"
-                  class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">{{ old('synopsis') }}</textarea>
+        <label class="block mb-1">Synopsis :</label>
+        <textarea name="synopsis" rows="5"
+                  class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white"></textarea>
+    </div>
+
+    <div>
+        <label class="block mb-1">Lien affiche :</label>
+        <input type="text" name="media" rows="5"
+                  class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white" ></input>
     </div>
 
     <button type="submit" class="bg-red-700 hover:bg-red-600 px-6 py-3 rounded-full font-semibold">
