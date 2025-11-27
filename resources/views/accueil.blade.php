@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CinéHub – Accueil</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col">
-<x-header></x-header>
-
+@extends('layouts.app')
+@section('title', 'accueil')
+@section('content')
+<!-- Page d'accueil pour un utilisateur connecté-->
 <main class="flex-grow px-8 pt-40 pb-20">
     <!-- Section Films -->
     <section class="mb-16">
@@ -60,7 +53,4 @@
         </div>
     </section>
 </main>
-
-<x-footer></x-footer>
-</body>
-</html>
+@endsection
