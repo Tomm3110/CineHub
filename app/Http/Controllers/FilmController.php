@@ -17,7 +17,7 @@ class FilmController extends Controller
 
         $query = Film::query();
         if ($cat != 'All' && $cat != '') {
-            $query->where('titre', $cat);
+            $query->where('titre', 'like', '%' . $cat . '%');
         }
         $films = $query->get();
         $titres = Film::distinct()->pluck('titre');
