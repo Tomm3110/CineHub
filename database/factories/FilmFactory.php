@@ -16,12 +16,13 @@ class FilmFactory extends Factory
      */
     public function definition(): array
     {
+        $randomId = rand(1, 1000);
         return [
             'titre' => $this->faker->sentence(3,true),
             'annee' => $this->faker->dateTimeBetween(1980, new \DateTime()),
             'realisateur' => $this->faker->name(),
             'synopsis' => $this->faker->paragraph(),
-            'media' => $this->faker->imageUrl(),
+            'media' => "https://loremflickr.com/400/600/movie,poster?random={$randomId}",
         ];
     }
 }
