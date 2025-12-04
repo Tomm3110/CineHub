@@ -14,7 +14,7 @@
     <div class="flex items-center gap-3">
         <div>
             @auth()
-            <span>{{ '@' . Auth::user()->name }}</span>
+            <span>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
             @endauth
         </div>
         <div>
