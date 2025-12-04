@@ -19,27 +19,29 @@
                 <form method="POST" action="{{ route('register') }}" class="mt-6">
                     @csrf
                     <div class="grid gap-y-4">
-                        <div>
-                            <label for="firstname" class="block text-sm mb-2 text-gray-200">Prénom</label>
-                            <div class="relative">
-                                <input type="text" id="firstname" name="firstname"
-                                    class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
-                                    required ="firstname" autofocus value="{{ old('firstname') }}">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="firstname" class="block text-sm mb-2 text-gray-200">Prénom</label>
+                                <div class="relative">
+                                    <input type="text" id="firstname" name="firstname"
+                                        class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
+                                        required autofocus value="{{ old('firstname') }}">
+                                </div>
+                                @error('firstname')
+                                    <p class="text-xs text-red-500 mt-2">{{ $message }}</p>
+                                @enderror
                             </div>
-                            @error('firstname')
-                                <p class="text-xs text-red-500 mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div>
-                            <label for="lastname" class="block text-sm mb-2 text-gray-200">Nom</label>
-                            <div class="relative">
-                                <input type="text" id="lastname" name="lastname"
-                                    class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
-                                    required ="lastname" autofocus value="{{ old('lastname') }}">
+                            <div>
+                                <label for="lastname" class="block text-sm mb-2 text-gray-200">Nom</label>
+                                <div class="relative">
+                                    <input type="text" id="lastname" name="lastname"
+                                        class="py-3 px-4 block w-full border-red-900/50 rounded-lg text-sm bg-black/50 text-white focus:border-red-600 focus:ring-red-600 focus:ring-1"
+                                        required value="{{ old('lastname') }}">
+                                </div>
+                                @error('lastname')
+                                    <p class="text-xs text-red-500 mt-2">{{ $message }}</p>
+                                @enderror
                             </div>
-                            @error('lastname')
-                                <p class="text-xs text-red-500 mt-2">{{ $message }}</p>
-                            @enderror
                         </div>
                         <div>
                             <label for="email" class="block text-sm mb-2 text-gray-200">Adresse Email</label>
