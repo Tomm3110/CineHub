@@ -24,3 +24,4 @@ Route::get('/series', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
