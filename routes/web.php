@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FilmController;
@@ -16,7 +17,11 @@ Route::get('/home', function () {
 })->name('accueil');
 
 Route::resource('film', FilmController::class);
-
+Route::middleware('auth')->group(function () {
+    Route::get('/user', [ProfilController::class, 'show'])->name('user.show');
+    Route::get('/user/edit', [ProfilController::class, 'edit'])->name('user.edit');
+    Route::put('/user/update', [ProfilController::class, 'update'])->name('user.update');
+});
 Route::get('/series', function () {
     return view('series');
 })->name('series');

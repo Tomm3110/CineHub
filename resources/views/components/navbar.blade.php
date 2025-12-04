@@ -13,9 +13,11 @@
 
     <div class="flex items-center gap-3">
         <div>
+            <a href={{ route('user.show')}}
             @auth()
             <span>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
             @endauth
+            </a>
         </div>
         <div>
         @guest()
