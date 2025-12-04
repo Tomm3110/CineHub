@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Fortify::registerView(function () {
             return view('auth.register');
         });
-        Fortify::resetPasswordView(function () {
+        Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');
         });
         Fortify::resetPasswordView(function ($request) {

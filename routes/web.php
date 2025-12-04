@@ -21,6 +21,3 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/forgot-password', function () {
-    return view('auth/forgot-password');
-})->name('forgot-password');
