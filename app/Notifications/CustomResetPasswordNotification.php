@@ -25,7 +25,7 @@ class CustomResetPasswordNotification extends ResetPassword
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via(mixed $notifiable): array
     {
         return ['mail'];
     }
@@ -33,7 +33,7 @@ class CustomResetPasswordNotification extends ResetPassword
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(mixed $notifiable): MailMessage
     {
         $url = url(route('password.reset', [
             'token' => $this->token,
