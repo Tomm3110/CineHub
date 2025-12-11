@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('annee');
             $table->string('realisateur');
             $table->text('synopsis')->nullable();
+            $table->string('media');
             $table->timestamps();
         });
     }
