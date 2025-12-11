@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,15 +12,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        var_dump('ghfjk');
+        $users = User::all();
+        dd($users);
+        return view('user.index', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -27,7 +25,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'is_admin' => 'nullable|boolean',
+        ]);
+
+        User::create([
+            'firstname' => $validatedData['firstname'],
+            'lastname' => $validatedData['lastname'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'is_admin' => $request->has('is_admin'),
+        ]);
+        return redirect()->route('users.index')
+            ->with('success', 'Utilisateur créé avec succès !');
     }
 
     /**

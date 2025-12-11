@@ -15,19 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('accueil');
 
-Route::get('/home', function () {
-    return view('accueil');
-})->name('accueil');
-
 Route::resource('film', FilmController::class);
 Route::middleware('auth')->group(function () {
     Route::get('/user', [ProfilController::class, 'show'])->name('user.show');
     Route::get('/user/edit', [ProfilController::class, 'edit'])->name('user.edit');
     Route::put('/user/update', [ProfilController::class, 'update'])->name('user.update');
 });
-Route::get('/series', function () {
-    return view('series');
-})->name('series');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -46,4 +39,7 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware(['guest'])
     ->name('password.store');
 
-Route::resource('users', UserController::class);
+Route::middleware(['auth', 'role:admin'])->prefix('admin') ->group(function () {
+    Route::resource('users', UserController::class);
+});
+
