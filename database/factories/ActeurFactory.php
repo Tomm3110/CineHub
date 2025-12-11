@@ -17,7 +17,9 @@ class ActeurFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'name' => $this->faker->name(),
+            'date_naissance' => $this->faker->date(),
+            'biographie' => $this->faker->paragraph(),
         ];
     }
 }
