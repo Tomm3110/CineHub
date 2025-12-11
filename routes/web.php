@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FilmController;
@@ -44,3 +45,5 @@ Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware(['guest'])
     ->name('password.store');
+
+Route::resource('users', UserController::class);
