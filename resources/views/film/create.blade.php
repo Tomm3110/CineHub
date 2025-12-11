@@ -1,65 +1,99 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer un film</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gradient-to-b from-red-950 via-red-900 to-black text-white min-h-screen flex flex-col p-6">
+@extends('layouts.app')
 
-<h1 class="text-4xl font-bold mb-8">Créer un film</h1>
+@section('title', 'Ajouter un film')
 
-@if ($errors->any())
-    <div class="bg-red-800/40 border border-red-600 p-4 rounded-xl mb-6">
-        <ul class="space-y-1 text-red-200">
-            @foreach ($errors->all() as $error)
-                <li>• {{ $error }}</li>
-            @endforeach
-        </ul>
+@section('content')
+    {{-- Astuce CSS pour le fond global --}}
+    <style>
+        body { background-color: #1c1917; }
+    </style>
+
+    <div class="max-w-4xl mx-auto mt-12 mb-20 px-4">
+
+        {{-- Navigation Retour --}}
+        <nav class="mb-6">
+            <a href="{{ route('film.index') }}"
+               class="inline-flex items-center text-stone-400 hover:text-white transition duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Retour à la liste
+            </a>
+        </nav>
+
+        {{-- En-tête --}}
+        <div class="mb-8 border-b border-stone-700 pb-4">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white">
+                Ajouter un <span class="text-yellow-500">Nouveau Film</span>
+            </h1>
+            <p class="text-stone-400 mt-2">Remplissez les informations ci-dessous pour créer un film.</p>
+        </div>
+
+        {{-- Affichage des erreurs --}}
+        @if ($errors->any())
+            <div class="mb-6 p-4 bg-red-900/30 border border-red-600 text-red-200 rounded-lg">
+                <p class="font-bold mb-2">Oups ! Il y a des erreurs :</p>
+                <ul class="list-disc pl-5 space-y-1 text-sm">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        {{-- Formulaire --}}
+        <div class="bg-stone-800 rounded-3xl p-8 border border-stone-700 shadow-2xl">
+            <form action="{{ route('film.store') }}" method="POST" class="space-y-8">
+                @csrf
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {{-- Titre --}}
+                    <div class="space-y-2">
+                        <label for="titre" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Titre du film</label>
+                        <input type="text" name="titre" id="titre"
+                               value="{{ old('titre') }}"
+                               class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition duration-200"
+                               placeholder="Ex: Inception" required>
+                    </div>
+
+                    {{-- Date de sortie (Renommé 'annee' -> 'date_sortie') --}}
+                    <div class="space-y-2">
+                        <label for="date_sortie" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Date de sortie</label>
+                        <input type="date" name="date_sortie" id="date_sortie"
+                               value="{{ old('date_sortie') }}"
+                               class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition duration-200">
+                    </div>
+
+                    {{-- URL Affiche (Renommé 'media' -> 'poster_url') --}}
+                    <div class="space-y-2 md:col-span-2">
+                        <label for="poster_url" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Lien de l'affiche (URL)</label>
+                        <input type="url" name="poster_url" id="poster_url"
+                               value="{{ old('poster_url') }}"
+                               class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition duration-200"
+                               placeholder="https://image.tmdb.org/t/p/w500/...">
+                    </div>
+                </div>
+
+                {{-- Synopsis --}}
+                <div class="space-y-2">
+                    <label for="synopsis" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Synopsis</label>
+                    <textarea name="synopsis" id="synopsis" rows="6"
+                              class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition duration-200 leading-relaxed"
+                              placeholder="Résumé de l'histoire...">{{ old('synopsis') }}</textarea>
+                </div>
+
+                {{-- Boutons --}}
+                <div class="pt-6 border-t border-stone-700 flex items-center justify-end gap-4">
+                    <a href="{{ route('film.index') }}"
+                       class="px-6 py-3 rounded-lg text-stone-300 hover:text-white font-medium hover:bg-stone-700 transition duration-200">
+                        Annuler
+                    </a>
+                    <button type="submit"
+                            class="px-8 py-3 bg-yellow-600 hover:bg-yellow-500 text-black font-bold rounded-lg shadow-lg shadow-yellow-900/20 transform hover:-translate-y-0.5 transition duration-200">
+                        Créer le film
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-@endif
-
-<form action="{{ route('film.store') }}" method="POST" class="space-y-6">
-    @csrf
-<div>
-        <label class="block mb-1">Titre :</label>
-        <input type="text" name="titre"
-               class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white" required>
-    </div>
-
-    <div>
-        <label class="block mb-1">Date :</label>
-        <input type="date" name="annee"
-               class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
-    </div>
-
-    <div>
-        <label class="block mb-1">Réalisateur :</label>
-        <input type="text" name="realisateur"
-               class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white">
-    </div>
-
-    <div>
-        <label class="block mb-1">Synopsis :</label>
-        <textarea name="synopsis" rows="5"
-                  class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white"></textarea>
-    </div>
-
-    <div>
-        <label class="block mb-1">Lien affiche :</label>
-        <input type="text" name="media" rows="5"
-                  class="w-full p-3 rounded-xl bg-red-900/40 border border-red-700 text-white" ></input>
-    </div>
-
-    <button type="submit" class="bg-red-700 hover:bg-red-600 px-6 py-3 rounded-full font-semibold">
-        Créer
-    </button>
-</form>
-
-<a href="{{ route('film.index') }}" class="block mt-6 text-red-300 hover:text-red-100">
-    ⬅ Retour à la liste
-</a>
-
-</body>
-</html>
+@endsection

@@ -41,7 +41,7 @@ class FilmController extends Controller
 
     public function store(Request $request) {
         // 1. Validation
-        $request->validate([
+        $validated=$request->validate([
             'titre' => 'required|string|max:255',
             'date_sortie' => 'nullable|date',
             'synopsis' => 'nullable|string',
@@ -53,7 +53,6 @@ class FilmController extends Controller
         $film->titre = $request->input('titre');
         $film->date_sortie = $request->input('date_sortie');
         $film->synopsis = $request->input('synopsis');
-        $film->media = $request->input('media');
         $film->save();
 
         if (!empty($validated['poster_url'])) {
@@ -83,7 +82,7 @@ class FilmController extends Controller
 
     public function update(Request $request, $id) {
         // Validation
-        $request->validate([
+        $validated=$request->validate([
             'titre' => 'required|string|max:255',
             'date_sortie' => 'nullable|date',
             'synopsis' => 'nullable|string',
