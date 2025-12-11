@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\DatabaseEloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Film;
 
 class Comment extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
             'titre',
             'content',
