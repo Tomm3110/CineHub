@@ -18,8 +18,9 @@ class MediaFactory extends Factory
     {
         $randomId = rand(1, 1000);
         return [
-            'file_path' => "https://loremflickr.com/400/600/movie,poster?random={$randomId}",
-            'label' => 'poster',
+            'type' => 'poster',
+            'description' => $this->faker->paragraph(),
+            'url' => "https://loremflickr.com/400/600/movie,poster?random={$randomId}",
         ];
     }
 }

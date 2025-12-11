@@ -9,7 +9,7 @@ class Media extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['file_path', 'label', 'film_id'];
+    protected $fillable = ['type', 'url', 'description'];
 
     public function film() {
         return $this->belongsTo(Film::class);

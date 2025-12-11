@@ -2,7 +2,7 @@
 
     <div class="relative h-64 overflow-hidden bg-gray-900">
         <a href="{{ route('film.show', $film->id) }}" class="block w-full h-full">
-            <img src="{{ $film->medias->first()?->file_path ?? 'https://via.placeholder.com/300x450' }}"
+            <img src="{{ $film->medias->first()?->url ?? 'https://via.placeholder.com/300x450' }}"
                  alt="{{ $film->titre }}"
                  class="w-full h-full object-cover opacity-90 hover:opacity-100 transition duration-500 hover:scale-105">
         </a>
