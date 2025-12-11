@@ -19,18 +19,10 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'titre' => $this->faker->sentence(6), // Une phrase de 6 mots
-            'content' => $this->faker->paragraph(3), // Un paragraphe de 3 phrases
-            
-            // Choix aléatoire parmi vos status définis
+            'titre' => $this->faker->sentence(6),
+            'content' => $this->faker->paragraph(3),
             'status' => $this->faker->randomElement(['validé', 'en_attente', 'supprimé']),
-            
-            // Génère un nombre à virgule (ex: 3.5, 4.2). 
-            // Arguments : (nombre de décimales, min, max)
             'note' => $this->faker->randomFloat(1, 0, 5),
-            
-            // Par défaut, on crée un User et un Film pour chaque commentaire
-            // (On pourra surcharger cela dans le Seeder pour lier à des existants)
             'user_id' => User::factory(),
             'film_id' => Film::factory(),
         ];
