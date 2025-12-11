@@ -3,14 +3,12 @@
 @section('title', 'Ajouter un film')
 
 @section('content')
-    {{-- Astuce CSS pour le fond global --}}
     <style>
         body { background-color: #1c1917; }
     </style>
 
     <div class="max-w-4xl mx-auto mt-12 mb-20 px-4">
 
-        {{-- Navigation Retour --}}
         <nav class="mb-6">
             <a href="{{ route('film.index') }}"
                class="inline-flex items-center text-stone-400 hover:text-white transition duration-200 group">
@@ -21,7 +19,6 @@
             </a>
         </nav>
 
-        {{-- En-tête --}}
         <div class="mb-8 border-b border-stone-700 pb-4">
             <h1 class="text-3xl md:text-4xl font-extrabold text-white">
                 Ajouter un <span class="text-yellow-500">Nouveau Film</span>
@@ -29,7 +26,6 @@
             <p class="text-stone-400 mt-2">Remplissez les informations ci-dessous pour créer un film.</p>
         </div>
 
-        {{-- Affichage des erreurs --}}
         @if ($errors->any())
             <div class="mb-6 p-4 bg-red-900/30 border border-red-600 text-red-200 rounded-lg">
                 <p class="font-bold mb-2">Oups ! Il y a des erreurs :</p>
@@ -41,13 +37,11 @@
             </div>
         @endif
 
-        {{-- Formulaire --}}
         <div class="bg-stone-800 rounded-3xl p-8 border border-stone-700 shadow-2xl">
             <form action="{{ route('film.store') }}" method="POST" class="space-y-8">
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {{-- Titre --}}
                     <div class="space-y-2">
                         <label for="titre" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Titre du film</label>
                         <input type="text" name="titre" id="titre"
@@ -56,15 +50,13 @@
                                placeholder="Ex: Inception" required>
                     </div>
 
-                    {{-- Date de sortie (Renommé 'annee' -> 'date_sortie') --}}
                     <div class="space-y-2">
                         <label for="date_sortie" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Date de sortie</label>
                         <input type="date" name="date_sortie" id="date_sortie"
                                value="{{ old('date_sortie') }}"
-                               class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition duration-200">
+                               class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition duration-200" required>
                     </div>
 
-                    {{-- URL Affiche (Renommé 'media' -> 'poster_url') --}}
                     <div class="space-y-2 md:col-span-2">
                         <label for="poster_url" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Lien de l'affiche (URL)</label>
                         <input type="url" name="poster_url" id="poster_url"
@@ -74,7 +66,6 @@
                     </div>
                 </div>
 
-                {{-- Synopsis --}}
                 <div class="space-y-2">
                     <label for="synopsis" class="block text-xs font-bold text-stone-400 uppercase tracking-wider">Synopsis</label>
                     <textarea name="synopsis" id="synopsis" rows="6"
@@ -82,7 +73,6 @@
                               placeholder="Résumé de l'histoire...">{{ old('synopsis') }}</textarea>
                 </div>
 
-                {{-- Boutons --}}
                 <div class="pt-6 border-t border-stone-700 flex items-center justify-end gap-4">
                     <a href="{{ route('film.index') }}"
                        class="px-6 py-3 rounded-lg text-stone-300 hover:text-white font-medium hover:bg-stone-700 transition duration-200">

@@ -93,7 +93,6 @@
                 </div>
 
                 <div class="pt-6 border-t border-stone-700 flex items-center justify-end gap-4">
-                    {{-- MODIFICATION ICI : url()->previous() également pour le bouton Annuler du bas --}}
                     <a href="{{ url()->previous() }}"
                        class="px-6 py-3 rounded-lg text-stone-300 hover:text-white font-medium hover:bg-stone-700 transition duration-200">
                         Annuler
