@@ -14,12 +14,24 @@
 
             {{-- Image du film --}}
             <div class="flex-shrink-0">
-                <img src="{{ $film->media }}" class="h-64 w-48 object-cover rounded-lg shadow-lg border border-red-800">
+                @php
+                    $poster = $film->medias->where('type', 'poster')->first();
+                @endphp
+
+                @if($poster)
+                    <img src="{{ $poster->url }}"
+                         alt="{{ $poster->description }}"
+                         class="w-full h-full object-cover">
+                @else
+                    <div class="w-full h-full bg-gray-800 flex items-center justify-center">
+                        <span class="text-gray-500">Pas d'image</span>
+                    </div>
+                @endif
             </div>
 
             {{-- Informations --}}
             <div class="space-y-4 flex-1">
-                <p class="text-lg"><span class="font-semibold text-red-300">Date de sortie :</span> {{ $film->annee->locale('fr')->translatedFormat('j F Y') }}</p>
+                <p class="text-lg"><span class="font-semibold text-red-300">Date de sortie :</span> {{ $film->date_sortie->locale('fr')->translatedFormat('j F Y') }}</p>
                 <p class="text-lg"><span class="font-semibold text-red-300">Réalisateur :</span> {{ $film->realisateur }}</p>
                 <p class="text-lg leading-relaxed"><span class="font-semibold text-red-300">Synopsis :</span> <br>{{ $film->synopsis }}</p>
             </div>
