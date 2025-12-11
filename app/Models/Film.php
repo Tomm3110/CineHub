@@ -15,7 +15,8 @@ class Film extends Model
         'titre',
         'annee',
         'realisateur',
-        'synopsis'
+        'synopsis',
+        'media',
     ];
 
     protected $casts = ['annee' => 'datetime'];
