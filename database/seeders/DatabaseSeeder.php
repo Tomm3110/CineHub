@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
            FilmSeeder::class,
-            MediaSeeder::class,
+           MediaSeeder::class,
         ]);
 
         $this->call([
@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FilmGenreSeeder::class,
             ParticipeSeeder::class,
+            CommentSeeder::class,
         ]);
     }
 }
