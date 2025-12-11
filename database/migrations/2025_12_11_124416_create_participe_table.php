@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignIdFor(Film::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Acteur::class)->constrained()->onDelete('cascade');
             $table->primary(['film_id', 'acteur_id']);
-            $table->float('note');
-            $table->String('role');
+            $table->float('note')->nullable();
+            $table->String('role')->nullable();
             $table->timestamps();
         });
     }

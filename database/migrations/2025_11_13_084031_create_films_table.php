@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->integer('annee');
-            $table->string('realisateur');
+            $table->integer('date_sortie')->nullable();
             $table->text('synopsis')->nullable();
+            $table->integer('duree')->nullable();
             $table->timestamps();
         });
     }

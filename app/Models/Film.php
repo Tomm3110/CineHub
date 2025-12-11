@@ -12,15 +12,28 @@ class Film extends Model
 
     protected $fillable = [
         'titre',
-        'annee',
-        'realisateur',
-        'synopsis'
+        'date_sortie',
+        'synopsis',
+        'duree',
     ];
 
-    protected $casts = ['annee' => 'datetime'];
+    protected $casts = ['date_sortie' => 'datetime'];
 
     public function medias()
     {
         return $this->hasMany(Media::class);
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'film_genre');
+    }
+
+    public function acteurs()
+    {
+        return $this->belongsToMany(Acteur::class, 'participe')
+            ->using(Participe::class)
+            ->withPivot('role', 'note')
+            ->withTimestamps();
     }
 }

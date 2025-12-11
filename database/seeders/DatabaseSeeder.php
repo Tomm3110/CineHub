@@ -22,8 +22,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            FilmSeeder::class,
+           FilmSeeder::class,
             MediaSeeder::class,
+        ]);
+
+        $this->call([
+            GenreSeeder::class,
+            ActeurSeeder::class,
+        ]);
+
+        $this->call([
+            FilmGenreSeeder::class,
+            ParticipeSeeder::class,
         ]);
     }
 }

@@ -18,8 +18,8 @@ class ActeurFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'date_naissance' => $this->faker->date(),
-            'biographie' => $this->faker->paragraph(),
+            'date_naissance' => $this->faker->dateTimeBetween('-60 years', '-18 years'),
+            'biographie' => $this->faker->realText(200),
         ];
     }
 }
