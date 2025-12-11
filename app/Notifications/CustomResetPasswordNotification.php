@@ -11,13 +11,14 @@ use Illuminate\Notifications\Notification;
 class CustomResetPasswordNotification extends ResetPassword
 {
     use Queueable;
+    public $token;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -40,7 +41,7 @@ class CustomResetPasswordNotification extends ResetPassword
             'email' => $notifiable->getEmailForPasswordReset(),
         ], false));
         return (new MailMessage)
-            ->subject('Réinitialisation de votre mot de passe (Custom)')
+            ->subject('Réinitialisation de votre mot de passe')
             ->line('Vous recevez cet email car nous avons reçu une demande de réinitialisation pour votre compte.')
             ->action('Réinitialiser le mot de passe', $url)
             ->line('Si vous n\'avez pas demandé de réinitialisation, aucune action n\'est requise.');
