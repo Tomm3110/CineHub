@@ -19,17 +19,14 @@ class FilmController extends Controller
         if ($cat != 'All' && $cat != '') {
             $query->where('titre', 'like', '%' . $cat . '%');
         }
-        $films = $query->get();
+        $films = $query->with('medias')->get();
         $titres = Film::distinct()->pluck('titre');
-
-        $medias = Film::distinct()->pluck('media');
 
         return view('film.index', [
             'titre' => "Liste des films",
             'cat' => $cat,
             'titres' => $titres,
             'films' => $films,
-            'medias' => $medias
         ]);
     }
 

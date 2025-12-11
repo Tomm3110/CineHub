@@ -18,4 +18,9 @@ class Film extends Model
     ];
 
     protected $casts = ['annee' => 'datetime'];
+
+    public function medias()
+    {
+        return $this->hasMany(Media::class);
+    }
 }
