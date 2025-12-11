@@ -43,20 +43,26 @@ class FilmController extends Controller
         // 1. Validation
         $request->validate([
             'titre' => 'required|string|max:255',
-            'annee' => 'nullable|date',
-            'realisateur' => 'nullable|string|max:255',
+            'date_sortie' => 'nullable|date',
             'synopsis' => 'nullable|string',
-            'media' => 'nullable|string',
+            'poster_url' => 'nullable|url',
         ]);
 
         // 2. Création
         $film = new Film();
         $film->titre = $request->input('titre');
-        $film->annee = $request->input('annee');
-        $film->realisateur = $request->input('realisateur');
+        $film->date_sortie = $request->input('date_sortie');
         $film->synopsis = $request->input('synopsis');
         $film->media = $request->input('media');
         $film->save();
+
+        if (!empty($validated['poster_url'])) {
+            $film->medias()->create([
+                'type' => 'poster',
+                'url' => $validated['poster_url'],
+                'description' => 'Affiche de ' . $film->titre
+            ]);
+        }
 
         // 3. Redirection avec message flash
         return redirect()->route('film.index')
@@ -79,19 +85,25 @@ class FilmController extends Controller
         // Validation
         $request->validate([
             'titre' => 'required|string|max:255',
-            'annee' => 'nullable|date',
-            'realisateur' => 'nullable|string|max:255',
+            'date_sortie' => 'nullable|date',
             'synopsis' => 'nullable|string',
-            'media' => 'nullable|string',
+            'poster_url' => 'nullable|url',
         ]);
 
         $film = Film::findOrFail($id);
         $film->titre = $request->input('titre');
-        $film->annee = $request->input('annee');
-        $film->realisateur = $request->input('realisateur');
+        $film->date_sortie = $request->input('date_sortie');
         $film->synopsis = $request->input('synopsis');
-        $film->media = $request->input('media');
         $film->save();
+
+        if (!empty($validated['poster_url'])) {
+            $film->medias()->updateOrCreate(
+                ['type' => 'poster'],
+                [
+                    'url' => $validated['poster_url'],
+                    'description' => 'Affiche de ' . $film->titre]
+            );
+        }
 
         return redirect()->route('film.index')->with('success', 'Film mis à jour');
     }
