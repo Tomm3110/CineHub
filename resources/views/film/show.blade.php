@@ -5,6 +5,7 @@
 @section('content')
     <div class="max-w-8xl mx-auto mt-12 mb-20 px-4">
 
+        {{-- Navigation retour --}}
         <nav class="mb-6">
             <a href="{{ route('film.index') }}"
                class="inline-flex items-center text-gray-400 hover:text-white transition duration-200 group">
@@ -16,7 +17,10 @@
         </nav>
 
         <div class="bg-stone-800 rounded-3xl overflow-hidden shadow-2xl border border-stone-700 flex flex-col md:flex-row min-h-[600px]">
-            <div class="md:w-1/3 lg:w-1/4 relative bg-black shrink-0">
+
+            {{-- BLOC IMAGE --}}
+            {{-- Correction : flex-none + md:w-1/3 (fixe à 33%) et suppression de lg:w-1/4 --}}
+            <div class="relative w-full h-96 md:h-auto md:w-1/3 flex-none bg-black">
                 @php
                     $poster = $film->medias->where('type', 'poster')->first();
                 @endphp
@@ -24,7 +28,7 @@
                 @if($poster)
                     <img src="{{ $poster->url }}"
                          alt="{{ $poster->description }}"
-                         class="w-full h-full object-cover object-center opacity-90 hover:opacity-100 transition duration-500">
+                         class="absolute inset-0 w-full h-full object-cover object-center opacity-90 hover:opacity-100 transition duration-500">
                 @else
                     <div class="w-full h-96 md:h-full bg-stone-900 flex flex-col items-center justify-center text-stone-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,9 +39,12 @@
                 @endif
             </div>
 
-            <div class="md:w-2/3 lg:w-3/4 p-8 md:p-10 flex flex-col min-w-0">
+            {{-- BLOC CONTENU --}}
+            {{-- Correction : flex-1 (prend tout l'espace restant) --}}
+            <div class="flex-1 p-8 md:p-10 flex flex-col min-w-0">
 
                 <div class="flex-grow">
+                    {{-- Infos techniques --}}
                     <div class="flex flex-wrap items-center gap-4 text-sm font-medium text-red-400 mb-3 uppercase tracking-wider">
                         <span>{{ optional($film->date_sortie)->locale('fr')->translatedFormat('d F Y') }}</span>
                         <span class="w-1 h-1 rounded-full bg-stone-500"></span>
@@ -49,10 +56,12 @@
                         @endif
                     </div>
 
+                    {{-- Titre --}}
                     <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight truncate">
                         {{ $film->titre }}
                     </h1>
 
+                    {{-- Genres --}}
                     @if($film->genres && $film->genres->count() > 0)
                         <div class="flex flex-wrap gap-2 mb-8">
                             @foreach($film->genres as $genre)
@@ -63,18 +72,20 @@
                         </div>
                     @endif
 
+                    {{-- Synopsis --}}
                     <div class="mb-8">
                         <h3 class="text-white font-bold text-lg mb-3 flex items-center">
                             <svg class="w-5 h-5 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
                             Synopsis
                         </h3>
-                        <div class=" min-h-[100px] max-h-[100px] overflow-y-auto pr-4 custom-scrollbar">
+                        <div class="min-h-[100px] max-h-[100px] overflow-y-auto pr-4 custom-scrollbar">
                             <p class="text-stone-300 leading-relaxed text-lg text-justify">
                                 {{ $film->synopsis }}
                             </p>
                         </div>
                     </div>
 
+                    {{-- Réalisateur --}}
                     <div class="mb-8 p-4 bg-stone-900/50 rounded-xl border border-stone-700/50 inline-block">
                         <span class="text-stone-400 text-sm block mb-1">Réalisé par</span>
                         <span class="text-white font-medium text-lg">
@@ -82,6 +93,7 @@
                         </span>
                     </div>
 
+                    {{-- Casting --}}
                     <div class="mb-10">
                         <h3 class="text-white font-bold text-lg mb-4 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,6 +129,7 @@
                     </style>
                 </div>
 
+                {{-- Boutons d'action --}}
                 <div class="pt-8 mt-auto border-t border-stone-700 flex flex-wrap items-center justify-between gap-4">
                     <a href="{{ route('film.edit', $film->id) }}" class="flex items-center gap-2 px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-black font-bold rounded-lg transition transform hover:-translate-y-0.5 shadow-lg shadow-yellow-900/20">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
